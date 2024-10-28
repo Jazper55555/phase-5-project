@@ -4,10 +4,10 @@ function Home() {
     return (
     <div className="home-container">
         <div className="home-header">
-            Welcome to Percussion Playground
+            Welcome to "Unknown"
         </div>
         <div className="home-content">
-            A place for percussionists to buy, sell, trade, and share their love of instruments
+            This might be cool one day
         </div>
     </div>
     )

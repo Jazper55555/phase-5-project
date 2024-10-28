@@ -4,6 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Home"
 import NavBar from "./NavBar";
 import About from "./About";
+import Clients from "./Clients";
+import Sponsors from "./Sponsors";
+import Shows from "./Shows";
+import Testimonials from "./Testimonials";
 
 
 function App() {
@@ -20,6 +24,18 @@ function App() {
         </Route>
         <Route exact path="/about">
           <About />
+        </Route>
+        <Route exact path="/clients">
+          <Clients />
+        </Route>
+        <Route exact path="/sponsors">
+          <Sponsors />
+        </Route>
+        <Route exact path="/shows">
+          <Shows />
+        </Route>
+        <Route exact path="/testimonials">
+          <Testimonials />
         </Route>
       </Switch>
     </main>
