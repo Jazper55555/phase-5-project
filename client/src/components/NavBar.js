@@ -12,6 +12,11 @@ function NavBar() {
                 </div>
             </NavLink>
             </div>
+            <div className="nav-links">
+            <NavLink to='/about' className="nav-item">
+                About
+            </NavLink>
+            </div>
         </nav>
     )
 }
