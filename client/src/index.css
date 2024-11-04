@@ -18,6 +18,7 @@
   justify-content: space-around;
   background-color: rgb(92, 92, 92);
   padding: 10px;
+  width: auto;
 }
 
 .logo {
@@ -29,6 +30,7 @@
 .logo-content {
   display: flex;
   align-items: center;
+  font-size: large;
 }
 
 .logo-content .logo-image {
@@ -49,13 +51,14 @@
 
 .nav-links {
   display: flex;
-  gap: 20px
+  gap: 15px;
+  margin-top: 2px;
 }
 
 .nav-item {
   text-decoration: none;
   color: whitesmoke;
-  padding: 10px;
+  padding: 5px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background: none;
   border: none;
@@ -79,10 +82,22 @@
 }
 
 .home-header {
+  text-align: center;
   margin-bottom: 10px;
   color: whitesmoke;
   font-size: 2rem; 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
 }
 
 .home-content {
@@ -91,13 +106,40 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.logo {
+  flex: 1;
+  font-size: x-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}
+
+.logo-content {
+  display: flex;
+  align-items: center;
+}
+
+.logo-content .logo-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.logo a:hover {
+  text-decoration: underline;
+  color: whitesmoke;
+}
+
+.logo a {
+  color: whitesmoke;
+  text-decoration: none; 
+}
+
 /* About Page Styling */
 .about-container {
   display: flex;
   flex-direction: column;
   justify-content: center; 
   align-items: center;     
-  height: 100vh;           
+  height: 120vh;           
   background-color: rgb(108, 107, 107);
 }
 
@@ -108,10 +150,60 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #808080; 
+}
+
 .about-content {
   color: whitesmoke;
   font-size: 1rem; 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.bio-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.bio-content {
+  display: flex;
+  align-items: center;
+  max-width: 50%; /* Adjust as needed */
+  gap: 100px; /* Space between image and text */
+}
+
+.about-image {
+  max-width: 20%;
+  height: 20%;
+  border-radius: 8px; /* Add some rounding for a softer look */
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.marc-bio, .jazper-bio {
+  flex: 1 1 300px; /* Adjust width as needed */
+  line-height: 1.6;
 }
 
 /* Clients Page Styling */
@@ -204,4 +296,25 @@
   color: whitesmoke;
   font-size: 1rem; 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Sign In Page Styling */
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;     
+  height: 100vh;           
+  background-color: rgb(108, 107, 107);
+}
+
+.sign-in-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
 }

@@ -8,7 +8,7 @@ import Clients from "./Clients";
 import Sponsors from "./Sponsors";
 import Shows from "./Shows";
 import Testimonials from "./Testimonials";
-
+import SignIn from "./SignIn";
 
 function App() {
 
@@ -36,6 +36,9 @@ function App() {
         </Route>
         <Route exact path="/testimonials">
           <Testimonials />
+        </Route>
+        <Route exact path="/sign-in">
+          <SignIn />
         </Route>
       </Switch>
     </main>

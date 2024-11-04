@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Image from '../ICA.png'
 
 function NavBar() {
 
@@ -7,8 +8,8 @@ function NavBar() {
             <div className="logo">
             <NavLink to='/'>
                 <div className="logo-content">
-                    <img src='https://www.shutterstock.com/image-vector/drum-sticks-crossed-vector-black-600nw-1634223691.jpg' alt='drumsticks logo' className="logo-image"/>
-                    <span>"Unknown"</span>
+                    <img src={Image} alt='ICA logo' className="logo-image"/>
+                    <span><i>Instinct Creative Arts</i></span>
                 </div>
             </NavLink>
             </div>
@@ -27,6 +28,9 @@ function NavBar() {
             </NavLink>
             <NavLink to='/testimonials' className="nav-item">
                 Testimonials
+            </NavLink>
+            <NavLink to='/sign-in' className="nav-item">
+                Sign In
             </NavLink>
             </div>
         </nav>

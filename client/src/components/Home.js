@@ -1,14 +1,11 @@
 import React from "react";
+import ImageLogo from '../ICA-LOGO.PNG'
 
 function Home() {
+
     return (
-    <div className="home-container">
-        <div className="home-header">
-            Welcome to "Unknown"
-        </div>
-        <div className="home-content">
-            This might be cool one day
-        </div>
+    <div className="home-container" style={{position: "relative"}}>
+        <div className="background-image" style={{backgroundImage: `url(${ImageLogo})`}}></div>
     </div>
     )
 }
