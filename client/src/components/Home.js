@@ -1,5 +1,5 @@
 import React from "react";
-import ImageLogo from '../ICA-LOGO.PNG'
+import ImageLogo from '../assets/ICA-LOGO.PNG'
 
 function Home() {
 

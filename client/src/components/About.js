@@ -11,8 +11,8 @@ function About() {
         <div className="about-container">
             <div className="about-header">About Us</div>
             <div className="button-container">
-                <button onClick={() => handleButtonClick('marc')}>Marc Young</button>
-                <button onClick={() => handleButtonClick('jazper')}>Jazper Saldaña</button>
+                <button className='bio-button' onClick={() => handleButtonClick('marc')}>Marc Young</button>
+                <button className='bio-button' onClick={() => handleButtonClick('jazper')}>Jazper Saldaña</button>
             </div>
             <br/><br/>
             <div className="about-content">
