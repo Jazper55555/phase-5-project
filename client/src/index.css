@@ -294,78 +294,6 @@ button:hover {
 }
 
 /* Show Details Page Layout */
-/* .selected-show {
-  display: grid;
-  height: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgb(108, 107, 107);
-  border-radius: 8px;
-}
-
-.show-header {
-  text-align: left;
-  margin-bottom: 20px;
-  margin-right: 100px;
-  margin-left: 66px;
-}
-
-.show-name {
-  font-size: 2em;
-  margin: 0;
-  color: whitesmoke;
-}
-
-.show-price {
-  font-size: 1em;
-  color: whitesmoke;
-  margin-left: 50px;
-  text-align: left;
-  margin-left: 125px;
-}
-
-.show-content {
-  color: whitesmoke;
-  font-size: 1rem; 
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.show-section {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; 
-  margin-bottom: 20px;
-  margin-right: 50px;
-}
-
-.show-description {
-  flex: 1; 
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 1.1em;
-  color: whitesmoke;
-  line-height: 1.6;
-  max-width: 330px;
-}
-
-.show-image {
-  max-width: 50%;
-  height: 50%;
-  border-radius: 8px;
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
-.show-audio {
-  max-width: 100%;
-}
-
-.show-details {
-  display: flex;
-  align-items: center;
-  max-width: 50%; 
-  gap: 100px; 
-} */
-
 .selected-show {
   max-width: 1000px;
   max-height: 2000px;
@@ -462,7 +390,7 @@ button:hover {
 }
 
 /* Sponsors Page Styling */
-.sponsors-container {
+/* .sponsors-container {
   display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -482,6 +410,40 @@ button:hover {
   color: whitesmoke;
   font-size: 1rem; 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+} */
+
+.trusted-partners {
+  padding: 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.partners-header {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.partners-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.partner-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.partner-link:hover {
+  transform: scale(1.05);
+}
+
+.partner-logo {
+  max-width: 150px;
+  height: auto;
+  display: block;
 }
 
 /* Testimonials Page Styling */

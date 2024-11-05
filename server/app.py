@@ -51,6 +51,22 @@ def get_show_by_id(id):
     
     return make_response(jsonify(response), 200)
 
+@app.route('/sponsors')
+def get_sponsors():
+    sponsors = Sponsor.query.all()
+    response = []
+
+    for sponsor in sponsors:
+        sponsor_data = {
+            'name': sponsor.name,
+            'image': sponsor.image,
+            'link': sponsor.link
+        }
+
+        response.append(sponsor_data)
+
+    return make_response(jsonify(response), 200)
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
