@@ -12,7 +12,7 @@ function Shows() {
     }, [])
 
     function handleClick(show) {
-        history.push(`/shows`)
+        history.push(`/shows/${show.id}`)
     }
 
     return (
@@ -24,20 +24,14 @@ function Shows() {
                 <div className="shows-content">
                 <ul className="shows-list">
                     {shows.map((show) => (
-                        <li key={show.id} className="show-item">
-                            <img src={show.image} alt={`${show.name}'s image`} className="shows-image" onClick={() => handleClick(show)}/>
+                        <li key={show.id} className="shows-item">
+                            <img src={show.image} alt={`${show.name}'s image`} className="shows-image"/>
                             <br/>
-                            <div className="show-info">
-                                <div className="overlay">
+                            <div className="shows-info">
+                                <div className="overlay" onClick={() => handleClick(show)}>
                                     <div className="overlay-text">{show.name}</div>
                                 </div>
                             </div>
-                            {/* {show.audio && (
-                            <audio controls>
-                                <source src={`/static/${show.audio}`} type="audio/mpeg" />
-                                Your browser does not support the audio element.
-                            </audio>
-                            )} */}
                         </li>
                     ))}
                 </ul>

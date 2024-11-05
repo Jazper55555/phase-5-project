@@ -249,7 +249,7 @@ button:hover {
   max-width: 1200px;
 }
 
-.show-item {
+.shows-item {
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -260,10 +260,10 @@ button:hover {
   display: block;
   width: 100%;
   height: 100%;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
-.show-item:hover .shows-image {
+.shows-item:hover .shows-image {
   transform: scale(1.05);
 }
 
@@ -281,7 +281,7 @@ button:hover {
   transition: opacity 0.3s ease;
 }
 
-.show-item:hover .overlay {
+.shows-item:hover .overlay {
   opacity: 1;
 }
 
@@ -291,6 +291,151 @@ button:hover {
   text-align: center;
   padding: 10px;
   text-decoration: underline;
+}
+
+/* Show Details Page Layout */
+/* .selected-show {
+  display: grid;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(108, 107, 107);
+  border-radius: 8px;
+}
+
+.show-header {
+  text-align: left;
+  margin-bottom: 20px;
+  margin-right: 100px;
+  margin-left: 66px;
+}
+
+.show-name {
+  font-size: 2em;
+  margin: 0;
+  color: whitesmoke;
+}
+
+.show-price {
+  font-size: 1em;
+  color: whitesmoke;
+  margin-left: 50px;
+  text-align: left;
+  margin-left: 125px;
+}
+
+.show-content {
+  color: whitesmoke;
+  font-size: 1rem; 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.show-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.show-description {
+  flex: 1; 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.1em;
+  color: whitesmoke;
+  line-height: 1.6;
+  max-width: 330px;
+}
+
+.show-image {
+  max-width: 50%;
+  height: 50%;
+  border-radius: 8px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.show-audio {
+  max-width: 100%;
+}
+
+.show-details {
+  display: flex;
+  align-items: center;
+  max-width: 50%; 
+  gap: 100px; 
+} */
+
+.selected-show {
+  max-width: 1000px;
+  max-height: 2000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: whitesmoke;
+}
+
+.show-header {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.show-name {
+  color: whitesmoke;
+  font-size: 2rem;
+}
+
+.show-price {
+  font-size: 1.2rem;
+  color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+.show-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 20px;
+}
+
+.show-image {
+  flex: 1 1 40%; /* Allow resizing based on available space */
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.show-details {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description-header {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.audio-header {
+  text-decoration: underline;
+}
+
+.instrumentation-header {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.show-description,
+.show-instrumentation {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.show-audio {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Clients Page Styling */

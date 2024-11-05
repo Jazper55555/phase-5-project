@@ -7,6 +7,7 @@ import About from "./About";
 import Clients from "./Clients";
 import Sponsors from "./Sponsors";
 import Shows from "./Shows";
+import ShowDetails from "./ShowDetails";
 import Testimonials from "./Testimonials";
 import Login from "./Login";
 
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route exact path="/shows">
           <Shows />
+        </Route>
+        <Route exact path="/shows/:id">
+          <ShowDetails />
         </Route>
         <Route exact path="/testimonials">
           <Testimonials />

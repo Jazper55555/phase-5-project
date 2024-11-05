@@ -25,6 +25,7 @@ def get():
             'id': show.id,
             'name': show.name,
             'image': show.image,
+            'description': show.description,
             'instrumentation': show.instrumentation,
             'price': show.price,
             'audio': show.audio
@@ -32,6 +33,22 @@ def get():
 
         response.append(show_data)
 
+    return make_response(jsonify(response), 200)
+
+@app.route('/shows/<int:id>')
+def get_show_by_id(id):
+    show = Show.query.filter(Show.id==id).first()
+
+    response = {
+            'id': show.id,
+            'name': show.name,
+            'image': show.image,
+            'description': show.description,
+            'instrumentation': show.instrumentation,
+            'price': show.price,
+            'audio': show.audio
+        }
+    
     return make_response(jsonify(response), 200)
 
 
