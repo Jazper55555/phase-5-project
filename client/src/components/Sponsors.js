@@ -4,9 +4,11 @@ function Sponsors() {
     const [partners, setPartners] = useState([])
 
     useEffect(() => {
-        fetch('sponsors')
+        fetch('/sponsors')
             .then((r) => r.json())
-            .then(setPartners)
+            .then((data) => {
+                setPartners(data)
+            })
     }, [])
 
     return (

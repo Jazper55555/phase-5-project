@@ -29,9 +29,6 @@ function App() {
         <Route exact path="/clients">
           <Clients />
         </Route>
-        <Route exact path="/sponsors">
-          <Sponsors />
-        </Route>
         <Route exact path="/shows">
           <Shows />
         </Route>

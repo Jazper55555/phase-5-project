@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useHistory} from 'react-router-dom'
+import Sponsors from "./Sponsors";
 
 function Shows() {
     const [shows, setShows] = useState([])
@@ -36,6 +37,7 @@ function Shows() {
                     ))}
                 </ul>
                 </div>
+                <Sponsors/>
             </div>
     )
 }

@@ -390,60 +390,49 @@ button:hover {
 }
 
 /* Sponsors Page Styling */
-/* .sponsors-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center;     
-  height: 100vh;           
-  background-color: rgb(108, 107, 107);
-}
-
-.sponsors-header {
-  margin-bottom: 10px;
-  color: whitesmoke;
-  font-size: 2rem; 
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.sponsors-content {
-  color: whitesmoke;
-  font-size: 1rem; 
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-} */
-
 .trusted-partners {
-  padding: 20px;
-  background-color: #f5f5f5;
+  justify-content: flex;
+  padding: 20px 50px; /* Increase padding for better spacing */
+  background-color: rgb(92, 92, 92);
   text-align: center;
+  width: 100%;
+  max-height: max-content;
+  margin-top: 100px;
 }
 
 .partners-header {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 1.3em;
+  text-decoration: underline;
+  margin-bottom: 30px;
+  color: whitesmoke;
+  font-weight: bold;
 }
 
 .partners-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
+  padding: 0;
+  list-style: none;
 }
 
 .partner-link {
   display: inline-block;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden; /* Ensure the shadow and border-radius are applied correctly */
 }
 
 .partner-link:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .partner-logo {
   max-width: 150px;
   height: auto;
-  display: block;
+  margin: 0 auto; /* Center the logo within its container */
+  margin-right: 30px;
 }
 
 /* Testimonials Page Styling */

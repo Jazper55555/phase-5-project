@@ -23,9 +23,6 @@ function NavBar() {
             <NavLink to='/clients' className="nav-item">
                 Clients
             </NavLink>
-            <NavLink to='/sponsors' className="nav-item">
-                Sponsors
-            </NavLink>
             <NavLink to='/testimonials' className="nav-item">
                 Testimonials
             </NavLink>
