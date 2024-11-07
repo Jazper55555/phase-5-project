@@ -16,7 +16,7 @@ def index():
     return '<h1>Project Server</h1>'
 
 @app.route('/shows')
-def get():
+def get_shows():
     shows = Show.query.all()
     response = []
 
@@ -49,6 +49,24 @@ def get_show_by_id(id):
             'audio': show.audio
         }
     
+    return make_response(jsonify(response), 200)
+
+@app.route('/users')
+def get_users():
+    users = User.query.all()
+    response = []
+
+    for user in users:
+        user_data = {
+            'id': user.id,
+            'name': user.name,
+            'username': user.username,
+            'email': user.email,
+            'organizations': user.organizations
+        }
+
+        response.append(user_data)
+
     return make_response(jsonify(response), 200)
 
 @app.route('/sponsors')

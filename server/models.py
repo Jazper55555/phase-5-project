@@ -24,6 +24,7 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     organizations = db.Column(db.String)
 
@@ -47,6 +48,7 @@ class Testimonial(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
     rating = db.Column(db.Integer)
+    show_id = db.Column(db.Integer, db.ForeignKey('shows.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):

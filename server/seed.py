@@ -25,6 +25,14 @@ def create_shows():
     ]
 
     return shows
+
+def create_users():
+    users = [
+        User(name='Jazper Saldana', username='jazper55555', email='jazpersaldana@yahoo.com', organizations='Haltom High School'),
+        User(name='Andrea Saldana', username='Andromeda', email='andreabellybutton55@gmail.com', organizations='Haltom High School')
+    ]
+
+    return users
     
 def create_sponsors():
     sponsors = [
@@ -48,10 +56,17 @@ if __name__ == '__main__':
         db.session.commit()
         Sponsor.query.delete()
         db.session.commit()
+        User.query.delete()
+        db.session.commit()
 
         print('Seeding Shows...')
         shows = create_shows()
         db.session.add_all(shows)
+        db.session.commit()
+
+        print('Seeding Users...')
+        users = create_users()
+        db.session.add_all(users)
         db.session.commit()
 
         print('Seeding Sponsors...')
