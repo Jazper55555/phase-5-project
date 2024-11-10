@@ -1,8 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "./AuthContext";
 import React from "react";
 
-const User = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+const Profile = () => {
+  const { user, isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -19,4 +19,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Profile;

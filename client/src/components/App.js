@@ -8,7 +8,7 @@ import Shows from "./Shows";
 import ShowDetails from "./ShowDetails";
 import Testimonials from "./Testimonials";
 import Login from './Login'
-import { User } from "@auth0/auth0-react";
+import Profile from "./UserProfile";
 
 function App() {
 
@@ -40,7 +40,9 @@ function App() {
         <Route exact path="/login">
           <Login />
         </Route>
-        <User />
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
       </Switch>
     </main>
     </>
