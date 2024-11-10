@@ -4,6 +4,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { Auth0Provider } from '@auth0/auth0-react'
+import { AuthProvider } from "./components/AuthContext";
 
 const container = document.getElementById("root");
 
@@ -16,8 +17,10 @@ root.render(
     authorizationParams={{
       redirect_uri: window.location.origin
     }}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </Auth0Provider>
 );

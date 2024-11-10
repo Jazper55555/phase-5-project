@@ -9,7 +9,7 @@ function Home() {
     return (
         <div>
             {isAuthenticated ? (
-                <h3 className="welcome-text">Welcome {user.name}</h3>
+                <h3 className="welcome-text">Welcome {user.nickname}</h3>
             ) : (null)}
             <div className="home-container" style={{position: "relative"}}>
                 <div className="background-image" style={{backgroundImage: `url(${ImageLogo})`}}></div>
