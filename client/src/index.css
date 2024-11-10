@@ -71,7 +71,7 @@ body, html {
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   justify-content: center; /* Center within the container */
   width: auto; /* Use auto to allow natural sizing */
 }
@@ -85,6 +85,7 @@ body, html {
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
+  margin-left: 5px;
 }
 
 .nav-item:hover {
@@ -92,7 +93,7 @@ body, html {
   background-color: transparent;
 }
 
-/* Login Button Styling */
+/* Login/Logout Button Styling */
 .login-button {
   text-decoration: none;
   color: whitesmoke;
@@ -106,6 +107,23 @@ body, html {
 }
 
 .login-button:hover {
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.logout-button {
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: medium;
+}
+
+.logout-button:hover {
   text-decoration: underline;
   background-color: transparent;
 }
@@ -172,6 +190,18 @@ body, html {
   text-decoration: none; 
 }
 
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 5px;
+  margin-top: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 /* About Page Styling */
 .about-container {
   display: flex;
@@ -180,7 +210,7 @@ body, html {
   align-items: center;     
   height: 100%;           
   background-color: rgb(108, 107, 107);
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .about-header {
@@ -255,6 +285,7 @@ button:hover {
   max-height: fit-content;  
   max-width: 100%;         
   background-color: rgb(108, 107, 107);
+  margin-top: 10px;
 }
 
 .shows-header {

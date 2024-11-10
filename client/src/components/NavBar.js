@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import Image from '../assets/ICA.png'
-import LoginTest from "./Login";
+import Login from "./Login";
+import Logout from "./Logout";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar() {
+    const { isAuthenticated } = useAuth0()
 
     return(
         <nav className="navbar">
@@ -30,7 +33,11 @@ function NavBar() {
                     </NavLink>
                 </div>
             </div>
-            <LoginTest className="login-button" />
+            {isAuthenticated ? (
+                <Logout className="login-button" />
+            ) : (
+                <Login className='logout-button'/>
+            )}
         </nav>
     )
 }

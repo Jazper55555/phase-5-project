@@ -7,8 +7,8 @@ import Clients from "./Clients";
 import Shows from "./Shows";
 import ShowDetails from "./ShowDetails";
 import Testimonials from "./Testimonials";
-import Login from "./LoginExtra";
-import LoginTest from './Login'
+import Login from './Login'
+import { User } from "@auth0/auth0-react";
 
 function App() {
 
@@ -38,8 +38,9 @@ function App() {
           <Testimonials />
         </Route>
         <Route exact path="/login">
-          <LoginTest />
+          <Login />
         </Route>
+        <User />
       </Switch>
     </main>
     </>
