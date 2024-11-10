@@ -37,7 +37,7 @@ body, html {
   flex: 1.5;
   justify-content: left;
   align-items: center;
-  width: 100%;
+  width: fit-content;
   box-sizing: border-box;
 }
 
