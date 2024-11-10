@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./Home"
 import NavBar from "./NavBar";
 import About from "./About";
 import Clients from "./Clients";
-import Sponsors from "./Sponsors";
 import Shows from "./Shows";
 import ShowDetails from "./ShowDetails";
 import Testimonials from "./Testimonials";
-import Login from "./Login";
+import Login from "./LoginExtra";
+import LoginTest from './Login'
 
 function App() {
 
@@ -39,7 +38,7 @@ function App() {
           <Testimonials />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <LoginTest />
         </Route>
       </Switch>
     </main>

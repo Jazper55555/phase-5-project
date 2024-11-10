@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sponsors from "./Sponsors";
 
 function About() {
-    const [bio, setBio] = useState(null)
+    const [bio, setBio] = useState('marc')
 
     const handleButtonClick = (name) => {
         setBio(name)

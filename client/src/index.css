@@ -24,10 +24,21 @@ body, html {
 /* NavBar Styling */
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(92, 92, 92);
   padding: 10px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-container {
+  display: flex;
+  flex: 1.5;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -60,8 +71,9 @@ body, html {
 
 .nav-links {
   display: flex;
-  gap: 10px;
-  margin-top: 2px;
+  gap: 20px;
+  justify-content: center; /* Center within the container */
+  width: auto; /* Use auto to allow natural sizing */
 }
 
 .nav-item {
@@ -76,6 +88,24 @@ body, html {
 }
 
 .nav-item:hover {
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+/* Login Button Styling */
+.login-button {
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: medium;
+}
+
+.login-button:hover {
   text-decoration: underline;
   background-color: transparent;
 }
@@ -148,8 +178,9 @@ body, html {
   flex-direction: column;
   justify-content: center; 
   align-items: center;     
-  height: 120vh;           
+  height: 100%;           
   background-color: rgb(108, 107, 107);
+  margin-top: 20px;
 }
 
 .about-header {
@@ -459,7 +490,7 @@ button:hover {
 }
 
 /* Sign In Page Styling */
-.signin-container {
+/* .signin-container {
   display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -529,4 +560,4 @@ button:hover {
   color: black;
   text-align: center;
   font-size: 15px; 
-}
+} */
