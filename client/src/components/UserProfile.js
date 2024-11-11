@@ -10,10 +10,16 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+      <div className="profile-container">
+        <div className="profile-header">
+            <img src={user.picture} alt={user.name} className="avatar-image"/>
+            <h5 className="profile-headers">Name:</h5>
+            <p className="profile-content">{user.nickname}</p>
+            <h5 className="profile-headers">Email:</h5>
+            <p className="profile-content">{user.email}</p>
+            <h5 className="profile-headers">Purchased Shows</h5>
+            <p className="profile-content">Gift of Time</p>
+        </div>
       </div>
     )
   );

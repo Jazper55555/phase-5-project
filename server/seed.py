@@ -48,8 +48,6 @@ if __name__ == '__main__':
         db.session.commit()
         Sponsor.query.delete()
         db.session.commit()
-        User.query.delete()
-        db.session.commit()
 
         print('Seeding Shows...')
         shows = create_shows()
