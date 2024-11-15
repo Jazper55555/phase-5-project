@@ -51,21 +51,36 @@ def get_show_by_id(id):
     
     return make_response(jsonify(response), 200)
 
-@app.route('/users')
-def get_users():
-    users = User.query.all()
+# @app.route('/users')
+# def get_users():
+#     users = User.query.all()
+#     response = []
+
+#     for user in users:
+#         user_data = {
+#             'id': user.id,
+#             'name': user.name,
+#             'username': user.username,
+#             'email': user.email,
+#             'organizations': user.organizations
+#         }
+
+#         response.append(user_data)
+
+#     return make_response(jsonify(response), 200)
+
+@app.route('/clients')
+def get_clients():
+    clients = Client.query.all()
     response = []
 
-    for user in users:
-        user_data = {
-            'id': user.id,
-            'name': user.name,
-            'username': user.username,
-            'email': user.email,
-            'organizations': user.organizations
+    for client in clients:
+        client_data = {
+            'id': client.id,
+            'name': client.name
         }
 
-        response.append(user_data)
+        response.append(client_data)
 
     return make_response(jsonify(response), 200)
 

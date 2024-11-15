@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sponsors from "./Sponsors";
 
 function Clients() {
+    const [clients, setClients] = useState([])
+
+    useEffect(() => {
+        fetch('/clients')
+        .then((r) => r.json())
+        .then(setClients)
+    }, [])
 
     return(
         <div>
@@ -10,7 +17,13 @@ function Clients() {
                 Clients
                 </div>
                 <div className="clients-content">
-                Schools/Organizations
+                    <ul className="clients-list">
+                    {clients.map((client) => (
+                        <li key={client.id}>
+                            <div className="client-name">{client.name}</div>
+                        </li>
+                    ))}
+                    </ul>
                 </div>
             </div>
             <Sponsors />

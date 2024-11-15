@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import Image from '../assets/ICA.png'
+import ICAImage from '../assets/ICA.png'
 import Login from "./Login";
 import Logout from "./Logout";
 import { useAuth } from "./AuthContext";
@@ -13,7 +13,7 @@ function NavBar() {
             <div className="logo">
             <NavLink to='/'>
                 <div className="logo-content">
-                    <img src={Image} alt='ICA logo' className="logo-image"/>
+                    <img src={ICAImage} alt='ICA logo' className="logo-image"/>
                     <span><i>Instinct Creative Arts</i></span>
                 </div>
             </NavLink>
