@@ -1,12 +1,43 @@
 import { useAuth } from "./AuthContext";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
 import React from "react";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Get access token
+        const accessToken = await getAccessTokenSilently();
+
+        // Fetch data from API
+        const response = await fetch('http://localhost:5555/users', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    if (isAuthenticated) {
+      fetchUserData();
+    }
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
+
 
   return (
     isAuthenticated && (
