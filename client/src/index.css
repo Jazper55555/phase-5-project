@@ -85,7 +85,7 @@ body, html {
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .nav-item:hover {
@@ -147,6 +147,7 @@ body, html {
   margin-right: 5px;
   cursor: pointer;
   transition: color 0.3s ease;
+  border-radius: 8px;
 }
 
 /* Profile Page Styling */
@@ -155,15 +156,16 @@ body, html {
   flex-direction: column;
   justify-content: center; 
   align-items: center;     
-  height: 100%;           
   background-color: rgb(108, 107, 107);
-  margin-top: 30px;
+  padding: 30px; /* Add some padding for spacing */
+  border-radius: 10px; /* Optional: Add border-radius for aesthetics */
 }
 
 .profile-header {
   margin-bottom: 20px;
-  margin-left: 50px;
+  margin-left: 30px;
   color: whitesmoke;
+  text-align: center;
   font-size: x-large; 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -174,14 +176,31 @@ body, html {
 }
 
 .avatar-image {
-  max-width: 40%;
-  height: 40%;
+  max-width: 20%;
+  height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Add some rounding for a softer look */
 }
 
 .profile-content {
   margin-top: 5px;
   font-size: medium;
+}
+
+.profile-testimonials {
+  margin-top: 10px;
+  display: flex;
+  align-items: center; /* Allow items to stretch to the same height */
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-testimonials-content {
+  margin-top: 10px;
+  font-size: medium;
+  text-align: center;
 }
 
 /* Home Page Styling */

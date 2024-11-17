@@ -1,36 +1,32 @@
 import { useAuth } from "./AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Sponsors from "./Sponsors";
 import React from "react";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      const saveUser = async () => {
+    const fetchTestimonials = async () => {
+      if (user && user.sub) {  // Check if user and user.sub are available
         try {
-          const response = await fetch('http://localhost:5555/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username: user.nickname, email: user.email }),
-          });
-          if (!response.ok) {
-            throw new Error('Failed to save user');
-          }
+          const response = await fetch(`/users/${user.sub}/testimonials`);
+          const testimonials = await response.json();
+          setTestimonials(testimonials);
         } catch (error) {
-          console.error('Error saving user:', error);
+          console.error('Error fetching testimonials:', error);
         }
-      };
+      }
+    };
 
-      saveUser();
+    if (isAuthenticated) {
+      fetchTestimonials();
     }
   }, [isAuthenticated, user]);
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
+  if (!isAuthenticated || !user) {
+    return <div>Loading...</div>;  // Show a loading state until user data is available
   }
 
   return (
@@ -43,8 +39,14 @@ const Profile = () => {
               <p className="profile-content">{user.nickname}</p>
               <h5 className="profile-headers">Email:</h5>
               <p className="profile-content">{user.email}</p>
-              <h5 className="profile-headers">Purchased Shows</h5>
-              <p className="profile-content">Gift of Time</p>
+              <h5 className="profile-headers">Reviews</h5>
+              <div className="profile-testimonials">
+                {testimonials.map((testimonial) => (
+                <p key={testimonial.id} className="profile-testimonials-content">
+                  {testimonial.content}
+                </p>
+              ))}
+              </div>
           </div>
         </div>
         <Sponsors />

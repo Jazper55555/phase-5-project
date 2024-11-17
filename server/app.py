@@ -52,10 +52,14 @@ def get_users():
     response = []
 
     for user in users:
+        testimonials_list = [{'content': testimonial.content} for testimonial in user.testimonials]
+
         user_data = {
             'id': user.id,
+            'auth0_id': user.auth0_id,
             'username': user.username,
-            'email': user.email
+            'email': user.email,
+            'testimonials': testimonials_list
         }
 
         response.append(user_data)
@@ -124,18 +128,19 @@ def get_sponsors():
 def create_user():
     data = request.get_json()
 
+    auth0_id = data.get('auth0_id')
     username_data = data.get('username')
     email_data = data.get('email')
 
-    if not username_data or not email_data:
+    if not auth0_id or not username_data or not email_data:
         return make_response(jsonify({'error': 'Missing data'}), 400)
 
-    existing_user = User.query.filter_by(email=email_data).first()
+    existing_user = User.query.filter_by(auth0_id=auth0_id).first()
 
     if existing_user:
         return make_response(jsonify({'error': 'User already exists'}), 409)
 
-    new_user = User(username=username_data, email=email_data)
+    new_user = User(auth0_id=auth0_id, username=username_data, email=email_data)
 
     try:
         db.session.add(new_user)
@@ -143,6 +148,47 @@ def create_user():
 
         return make_response(jsonify({'message': 'User created successfully'}), 201)
 
+    except Exception as e:
+        db.session.rollback()
+        return make_response(jsonify({'error': str(e)}), 500)
+    
+    
+@app.route('/users/<auth0_id>/testimonials', methods=['GET'])
+def get_user_testimonials(auth0_id):
+    user = User.query.filter_by(auth0_id=auth0_id).first()
+    if not user:
+        return make_response(jsonify({'error': 'User not found'}), 404)
+
+    testimonials_list = [{'id': t.id, 'content': t.content} for t in user.testimonials]
+    return make_response(jsonify(testimonials_list), 200)
+
+
+@app.route('/testimonials/<int:id>', methods=['PUT'])
+def update_testimonial(id):
+    data = request.get_json()
+    testimonial = Testimonial.query.get(id)
+    if not testimonial:
+        return make_response(jsonify({'error': 'Testimonial not found'}), 404)
+
+    testimonial.content = data.get('content', testimonial.content)
+    try:
+        db.session.commit()
+        return make_response(jsonify({'message': 'Testimonial updated successfully'}), 200)
+    except Exception as e:
+        db.session.rollback()
+        return make_response(jsonify({'error': str(e)}), 500)
+    
+
+@app.route('/testimonials/<int:id>', methods=['DELETE'])
+def delete_testimonial(id):
+    testimonial = Testimonial.query.get(id)
+    if not testimonial:
+        return make_response(jsonify({'error': 'Testimonial not found'}), 404)
+
+    try:
+        db.session.delete(testimonial)
+        db.session.commit()
+        return make_response(jsonify({'message': 'Testimonial deleted successfully'}), 200)
     except Exception as e:
         db.session.rollback()
         return make_response(jsonify({'error': str(e)}), 500)
