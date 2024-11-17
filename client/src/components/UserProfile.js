@@ -1,68 +1,36 @@
-// import { useAuth } from "./AuthContext";
-// import React from "react";
-
-// const Profile = () => {
-//   const { user, isAuthenticated, isLoading } = useAuth();
-
-//   if (isLoading) {
-//     return <div>Loading ...</div>;
-//   }
-
-//   return (
-//     isAuthenticated && (
-//       <div className="profile-container">
-//         <div className="profile-header">
-//             <img src={user.picture} alt={user.name} className="avatar-image"/>
-//             <h5 className="profile-headers">Name:</h5>
-//             <p className="profile-content">{user.nickname}</p>
-//             <h5 className="profile-headers">Email:</h5>
-//             <p className="profile-content">{user.email}</p>
-//             <h5 className="profile-headers">Purchased Shows</h5>
-//             <p className="profile-content">Gift of Time</p>
-//         </div>
-//       </div>
-//     )
-//   );
-// };
-
-// export default Profile;
-
-import React, { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import axios from 'axios'
+import { useAuth } from "./AuthContext";
+import { useEffect } from "react";
+import React from "react";
 
 const Profile = () => {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [users, setUsers] = useState([]);
+  const { user, isAuthenticated, isLoading } = useAuth();
 
- useEffect(() => {
-   const fetchData = async () => {
-     if (isAuthenticated) {
-       try {
-         const token = await getAccessTokenSilently({
-           audience: 'http://localhost:5555/',
-           scope: 'read:users',
-         });
+  useEffect(() => {
+    if (isAuthenticated) {
+      const saveUser = async () => {
+        try {
+          const response = await fetch('http://localhost:5555/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: user.nickname, email: user.email }),
+          });
+          if (!response.ok) {
+            throw new Error('Failed to save user');
+          }
+        } catch (error) {
+          console.error('Error saving user:', error);
+        }
+      };
 
-         console.log('Access Token:', token); // Debugging line
+      saveUser();
+    }
+  }, [isAuthenticated, user]);
 
-         const response = await axios.get('http://localhost:5555/users', {
-           headers: {
-             Authorization: `Bearer ${token}`,
-           },
-         });
-
-         setUsers(response.data);
-       } catch (error) {
-         console.error('Error fetching users:', error);
-       }
-     }
-   };
-
-   fetchData();
-   console.log(users)
- }, [isAuthenticated, getAccessTokenSilently]);
-
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     isAuthenticated && (

@@ -3,7 +3,7 @@
 from config import app, db
 from models import *
 
-from flask import jsonify, make_response
+from flask import jsonify, make_response, request
 
 # My Code
 @app.route('/')
@@ -54,9 +54,8 @@ def get_users():
     for user in users:
         user_data = {
             'id': user.id,
-            'name': user.name,
             'username': user.username,
-            'email': user.email,
+            'email': user.email
         }
 
         response.append(user_data)
@@ -93,6 +92,33 @@ def get_sponsors():
         response.append(sponsor_data)
 
     return make_response(jsonify(response), 200)
+
+@app.route('/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
+
+    username_data = data.get('username')
+    email_data = data.get('email')
+
+    if not username_data or not email_data:
+        return make_response(jsonify({'error': 'Missing data'}), 400)
+
+    existing_user = User.query.filter_by(email=email_data).first()
+
+    if existing_user:
+        return make_response(jsonify({'error': 'User already exists'}), 409)
+
+    new_user = User(username=username_data, email=email_data)
+
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+
+        return make_response(jsonify({'message': 'User created successfully'}), 201)
+
+    except Exception as e:
+        db.session.rollback()
+        return make_response(jsonify({'error': str(e)}), 500)
 
 
 if __name__ == '__main__':
