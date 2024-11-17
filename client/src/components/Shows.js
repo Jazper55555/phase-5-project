@@ -7,7 +7,7 @@ function Shows() {
     const history = useHistory()
 
     useEffect(() => {
-        fetch('shows')
+        fetch('/shows')
             .then((r) => r.json())
             .then(setShows)
     }, [])

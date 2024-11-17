@@ -1,5 +1,6 @@
 import { useAuth } from "./AuthContext";
 import { useEffect } from "react";
+import Sponsors from "./Sponsors";
 import React from "react";
 
 const Profile = () => {
@@ -34,16 +35,19 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="profile-container">
-        <div className="profile-header">
-            <img src={user.picture} alt={user.name} className="avatar-image"/>
-            <h5 className="profile-headers">Name:</h5>
-            <p className="profile-content">{user.nickname}</p>
-            <h5 className="profile-headers">Email:</h5>
-            <p className="profile-content">{user.email}</p>
-            <h5 className="profile-headers">Purchased Shows</h5>
-            <p className="profile-content">Gift of Time</p>
+      <div>
+        <div className="profile-container">
+          <div className="profile-header">
+              <img src={user.picture} alt={user.name} className="avatar-image"/>
+              <h5 className="profile-headers">Name:</h5>
+              <p className="profile-content">{user.nickname}</p>
+              <h5 className="profile-headers">Email:</h5>
+              <p className="profile-content">{user.email}</p>
+              <h5 className="profile-headers">Purchased Shows</h5>
+              <p className="profile-content">Gift of Time</p>
+          </div>
         </div>
+        <Sponsors />
       </div>
     )
   );

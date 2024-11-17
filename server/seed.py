@@ -19,13 +19,12 @@ def create_shows():
 
     return shows
 
-# def create_users():
-#     users = [
-#         User(name='Jazper Saldana', username='jazper55555', email='jazpersaldana@yahoo.com'),
-#         User(name='Andrea Saldana', username='Andromeda', email='andreabellybutton55@gmail.com')
-#     ]
+def create_testimonials():
+    testimonials = [
+        Testimonial(content="The Gift of Time is a wonderful show. Simple enough conceptually and musically but very well executed and designed! I would recommend this to any HS, regardless of class. There's enough there to make it special!", show_id=1, user_id=1)
+    ]
 
-#     return users
+    return testimonials
 
 def create_clients():
     clients = [
@@ -63,6 +62,8 @@ if __name__ == '__main__':
         db.session.commit()
         User.query.delete()
         db.session.commit()
+        Testimonial.query.delete()
+        db.session.commit()
         Client.query.delete()
         db.session.commit()
         Sponsor.query.delete()
@@ -73,10 +74,10 @@ if __name__ == '__main__':
         db.session.add_all(shows)
         db.session.commit()
 
-        # print('Seeding Users...')
-        # users = create_users()
-        # db.session.add_all(users)
-        # db.session.commit()
+        print('Seeding Testimonials...')
+        testimonials = create_testimonials()
+        db.session.add_all(testimonials)
+        db.session.commit()
 
         print('Seeding Clients...')
         clients = create_clients()

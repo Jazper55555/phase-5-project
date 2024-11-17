@@ -62,6 +62,33 @@ def get_users():
 
     return make_response(jsonify(response), 200)
 
+@app.route('/testimonials')
+def get_testimonials():
+    testimonials = Testimonial.query.all()
+    response = []
+
+    for testimonial in testimonials:
+        user = testimonial.user
+        show = testimonial.show
+
+        testimonial_data = {
+            'id': testimonial.id,
+            'content': testimonial.content,
+            'show_id': testimonial.show_id,
+            'user_id': testimonial.user_id,
+            'user': {
+                'username': testimonial.user.username if user else 'Unknown User'
+            },
+            'show': {
+                'name': testimonial.show.name if show else 'Unknown Show',
+                'image': testimonial.show.image if show else 'Unknown Show'
+            }
+        }
+
+        response.append(testimonial_data)
+
+    return make_response(jsonify(response), 200)
+
 @app.route('/clients')
 def get_clients():
     clients = Client.query.all()

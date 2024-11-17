@@ -1,7 +1,18 @@
 import React from "react";
 import Sponsors from "./Sponsors";
+import { useEffect, useState } from "react";
 
 function Testimonials() {
+    const [testimonials, setTestimonials] = useState([])
+
+    useEffect(() => {
+        fetch('/testimonials')
+        .then((r) => r.json())
+        .then((data) => {
+            setTestimonials(data)
+        })
+    }, [])
+
     return (
         <div>
             <div className="testimonials-container">
@@ -9,7 +20,21 @@ function Testimonials() {
                     Testimonials
                 </div>
                 <div className="testimonials-content">
-                    Praise goes here
+                    <ul className="testimonials-list">
+                        {testimonials.map((testimonial) => (
+                        <li key={testimonial.id} className="testimonial-item">
+                            <div className="testimonial-image-wrapper">
+                                <p className="testimonial-show-name">{testimonial.show.name}</p>
+                                <img src={testimonial.show.image} alt={`${testimonial.show.name}'s image`} className="testimonial-image" />
+                            </div>
+                            <div className="testimonial-content">
+                                "{testimonial.content}"
+                                <br/><br/>
+                                <span className="testimonial-name"> - {testimonial.user.username}</span>
+                            </div>
+                        </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
             <Sponsors />
