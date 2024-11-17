@@ -1,26 +1,11 @@
 #!/usr/bin/env python3
 
-# Standard library imports
-
-# Remote library imports
-from flask import Flask, make_response, jsonify
-from authlib.integrations.flask_oauth2 import ResourceProtector
-# from flask_restful import Resource
-
-# Local imports
-from config import app, db, api
-from validator import Auth0JWTBearerTokenValidator
+from config import app, db
 from models import *
 
-# Initialize Auth0 resource protector
-require_auth = ResourceProtector()
-validator = Auth0JWTBearerTokenValidator(
-    "dev-xd7ykqvwbz8sm235.us.auth0.com",
-    "http://localhost:5555" # Replace with your actual API Identifier
-)
-require_auth.register_token_validator(validator)
+from flask import jsonify, make_response
 
-
+# My Code
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
@@ -62,7 +47,6 @@ def get_show_by_id(id):
     return make_response(jsonify(response), 200)
 
 @app.route('/users')
-@require_auth(None)
 def get_users():
     users = User.query.all()
     response = []

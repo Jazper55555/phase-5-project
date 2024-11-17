@@ -1,42 +1,67 @@
-import { useAuth } from "./AuthContext";
+// import { useAuth } from "./AuthContext";
+// import React from "react";
+
+// const Profile = () => {
+//   const { user, isAuthenticated, isLoading } = useAuth();
+
+//   if (isLoading) {
+//     return <div>Loading ...</div>;
+//   }
+
+//   return (
+//     isAuthenticated && (
+//       <div className="profile-container">
+//         <div className="profile-header">
+//             <img src={user.picture} alt={user.name} className="avatar-image"/>
+//             <h5 className="profile-headers">Name:</h5>
+//             <p className="profile-content">{user.nickname}</p>
+//             <h5 className="profile-headers">Email:</h5>
+//             <p className="profile-content">{user.email}</p>
+//             <h5 className="profile-headers">Purchased Shows</h5>
+//             <p className="profile-content">Gift of Time</p>
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// export default Profile;
+
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
-import React from "react";
+import axios from 'axios'
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-  const [userData, setUserData] = useState(null);
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // Get access token
-        const accessToken = await getAccessTokenSilently();
+ useEffect(() => {
+   const fetchData = async () => {
+     if (isAuthenticated) {
+       try {
+         const token = await getAccessTokenSilently({
+           audience: 'http://localhost:5555/',
+           scope: 'read:users',
+         });
 
-        // Fetch data from API
-        const response = await fetch('http://localhost:5555/users', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
+         console.log('Access Token:', token); // Debugging line
 
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+         const response = await axios.get('http://localhost:5555/users', {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+         });
 
-    if (isAuthenticated) {
-      fetchUserData();
-    }
-  }, [isAuthenticated, getAccessTokenSilently]);
+         setUsers(response.data);
+       } catch (error) {
+         console.error('Error fetching users:', error);
+       }
+     }
+   };
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+   fetchData();
+   console.log(users)
+ }, [isAuthenticated, getAccessTokenSilently]);
 
 
   return (

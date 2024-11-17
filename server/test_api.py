@@ -1,10 +1,12 @@
 import http.client
 
-conn = http.client.HTTPConnection("localhost", 5555)
+conn = http.client.HTTPSConnection("dev-xd7ykqvwbz8sm235.us.auth0.com")
 
-headers = { 'authorization': "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjVMNzZzQ2xCUG1sdTM2aDVhM0lxaCJ9.eyJpc3MiOiJodHRwczovL2Rldi14ZDd5a3F2d2J6OHNtMjM1LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJmU21BRE9NZ1dseTNqSEhqNDJlYURudlJVTUNxcmdqb0BjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1NTU1L3VzZXJzIiwiaWF0IjoxNzMxNjk1MjgwLCJleHAiOjE3MzE3ODE2ODAsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6ImZTbUFET01nV2x5M2pISGo0MmVhRG52UlVNQ3FyZ2pvIn0.VMJI6c9xOa0OrS4KiZ3bJwNWU4eJVjj1sYdLa_E3SpNCzMzreoIalMqJUnDeNFza-BDgcDZIidrPHrMvGCGCZoU8BUxjz49SAmSGZ6ZWyDhgPXKPjM-RcqjjQjbLNgdQIk5ZGOgC23y_-aI2AzsnXRlaePu-QsweV6gHTI6n2m29cB_YnsVLiBO3oHHF1tMoM6SU8-zYSdjmPsTCjzf5rBaYs_ibStuT5u1j4uRGCRG1BBhBXf7iKi6vORFvfXo_uNG6dAHW7Z6vwepYkBXDNe9i5oamcuhiomyAPIpZ_GyrVb4JyXgyGdzJzvURzVInnUZKiZOWYDeIOpLqkNk7vg" }
+payload = "{\"client_id\":\"bhvVvC7SNx4oJCGjkIZ3Koi4S49Q0WPf\",\"client_secret\":\"c0ENP6LXlOXR5H8aIsdgDnWE6-Hk4fyUiLWTQcgXDr2Ap6zYX5UDc3Dk9TPk_pXN\",\"audience\":\"http://localhost:5555/\",\"grant_type\":\"client_credentials\"}"
 
-conn.request("GET", "/api/private", headers=headers)
+headers = { 'content-type': "application/json" }
+
+conn.request("POST", "/oauth/token", payload, headers)
 
 res = conn.getresponse()
 data = res.read()

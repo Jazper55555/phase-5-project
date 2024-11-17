@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Show, Client, Testimonial, Sponsor
+from models import db, Show, User, Client, Testimonial, Sponsor
 
 
 def create_shows():
@@ -18,6 +18,14 @@ def create_shows():
     ]
 
     return shows
+
+# def create_users():
+#     users = [
+#         User(name='Jazper Saldana', username='jazper55555', email='jazpersaldana@yahoo.com'),
+#         User(name='Andrea Saldana', username='Andromeda', email='andreabellybutton55@gmail.com')
+#     ]
+
+#     return users
 
 def create_clients():
     clients = [
@@ -53,6 +61,8 @@ if __name__ == '__main__':
         print('Clearing db...')
         Show.query.delete()
         db.session.commit()
+        User.query.delete()
+        db.session.commit()
         Client.query.delete()
         db.session.commit()
         Sponsor.query.delete()
@@ -62,6 +72,11 @@ if __name__ == '__main__':
         shows = create_shows()
         db.session.add_all(shows)
         db.session.commit()
+
+        # print('Seeding Users...')
+        # users = create_users()
+        # db.session.add_all(users)
+        # db.session.commit()
 
         print('Seeding Clients...')
         clients = create_clients()
