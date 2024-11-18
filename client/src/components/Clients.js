@@ -5,7 +5,7 @@ function Clients() {
     const [clients, setClients] = useState([])
 
     useEffect(() => {
-        fetch('/clients')
+        fetch('https://iac-api-fv75.onrender.com/clients')
         .then((r) => r.json())
         .then(setClients)
     }, [])

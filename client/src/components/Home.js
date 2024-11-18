@@ -11,7 +11,7 @@ function Home() {
         if (isAuthenticated) {
           const saveUser = async () => {
             try {
-              const response = await fetch('http://localhost:5555/users', {
+              const response = await fetch('https://iac-api-fv75.onrender.com/users', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

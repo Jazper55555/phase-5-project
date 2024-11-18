@@ -7,7 +7,7 @@ function Shows() {
     const history = useHistory()
 
     useEffect(() => {
-        fetch('/shows')
+        fetch('https://iac-api-fv75.onrender.com/shows')
             .then((r) => r.json())
             .then(setShows)
     }, [])
@@ -26,7 +26,7 @@ function Shows() {
                 <ul className="shows-list">
                     {shows.map((show) => (
                         <li key={show.id} className="shows-item">
-                            <img src={show.image} alt={`${show.name}'s image`} className="shows-image"/>
+                            <img src={show.image} alt={`${show.name}`} className="shows-"/>
                             <br/>
                             <div className="shows-info">
                                 <div className="overlay" onClick={() => handleClick(show)}>

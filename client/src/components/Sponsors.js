@@ -4,7 +4,7 @@ function Sponsors() {
     const [partners, setPartners] = useState([])
 
     useEffect(() => {
-        fetch('/sponsors')
+        fetch('https://iac-api-fv75.onrender.com/sponsors')
             .then((r) => r.json())
             .then((data) => {
                 setPartners(data)

@@ -7,7 +7,7 @@ function ShowDetails() {
     const [show, setShow] = useState(null)
 
     useEffect(() => {
-        fetch(`/shows/${id}`)
+        fetch(`https://iac-api-fv75.onrender.com/shows/${id}`)
         .then((r) => r.json())
         .then((data) => {
             setShow(data)
@@ -24,7 +24,7 @@ function ShowDetails() {
                     <p className="show-price">${show.price}</p>
                 </div>
                 <div className="show-section">
-                    <img src={show.image} alt={`${show.name} image`} className="show-image" />
+                    <img src={show.image} alt={`${show.name}`} className="show-" />
                     <div className="show-details">
                         <h4 className="description-header">Description</h4>
                         <p className="show-description">{show.description}</p>

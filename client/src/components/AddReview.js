@@ -8,7 +8,7 @@ const AddReview = ({ user, onAddTestimonial }) => {
   useEffect(() => {
     const fetchShows = async () => {
       try {
-        const response = await fetch('/shows');
+        const response = await fetch('https://iac-api-fv75.onrender.com/shows');
         const shows = await response.json();
         setShows(shows);
       } catch (error) {
@@ -26,7 +26,7 @@ const AddReview = ({ user, onAddTestimonial }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5555/testimonials', {
+      const response = await fetch('https://iac-api-fv75.onrender.com/testimonials', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

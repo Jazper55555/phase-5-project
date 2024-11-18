@@ -6,7 +6,7 @@ function Testimonials() {
     const [testimonials, setTestimonials] = useState([])
 
     useEffect(() => {
-        fetch('/testimonials')
+        fetch('https://iac-api-fv75.onrender.com/testimonials')
         .then((r) => r.json())
         .then((data) => {
             setTestimonials(data)
@@ -25,7 +25,7 @@ function Testimonials() {
                         <li key={testimonial.id} className="testimonial-item">
                             <div className="testimonial-image-wrapper">
                                 <p className="testimonial-show-name">{testimonial.show.name}</p>
-                                <img src={testimonial.show.image} alt={`${testimonial.show.name}'s image`} className="testimonial-image" />
+                                <img src={testimonial.show.image} alt={`${testimonial.show.name}`} className="testimonial-" />
                             </div>
                             <div className="testimonial-content">
                                 "{testimonial.content}"

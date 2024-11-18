@@ -15,7 +15,7 @@ const Profile = () => {
     const fetchTestimonials = async () => {
       if (user && user.sub) {  // Check if user and user.sub are available
         try {
-          const response = await fetch(`/users/${user.sub}/testimonials`);
+          const response = await fetch(`https://iac-api-fv75.onrender.com/users/${user.sub}/testimonials`);
           const testimonials = await response.json();
           setTestimonials(testimonials);
         } catch (error) {
@@ -36,7 +36,7 @@ const Profile = () => {
 
   const handleUpdate = async (id) => {
     try {
-      const response = await fetch(`/testimonials/${id}`, {
+      const response = await fetch(`https://iac-api-fv75.onrender.com/testimonials/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const Profile = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/testimonials/${id}`, {
+      const response = await fetch(`https://iac-api-fv75.onrender.com/testimonials/${id}`, {
         method: "DELETE",
       });
 

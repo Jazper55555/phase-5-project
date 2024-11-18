@@ -532,7 +532,7 @@ button:hover {
   gap: 20px;
 }
 
-.show-image {
+.show- {
   flex: 1 1 40%; /* Allow resizing based on available space */
   max-width: 90%;
   max-height: max-content;
@@ -715,7 +715,7 @@ button:hover {
   text-align: center;
 }
 
-.testimonial-image {
+.testimonial- {
   width: 100%; /* Take full width of the wrapper */
   height: 100%; /* Match the height of content */
   object-fit: cover; /* Maintain aspect ratio */
