@@ -21,7 +21,7 @@ def create_shows():
 
 def create_testimonials():
     testimonials = [
-        Testimonial(content="The Gift of Time is a wonderful show. Simple enough conceptually and musically but very well executed and designed! I would recommend this to any HS, regardless of class. There's enough there to make it special!", show_id=1, user_id=1)
+        Testimonial(content="The Gift of Time is a wonderful show. Simple enough conceptually and musically but very well executed and designed! I would recommend this to any HS, regardless of class. There's enough there to make it special!", show_id=1, user_id='auth0|67394bfa9af6f77f6657c90b')
     ]
 
     return testimonials

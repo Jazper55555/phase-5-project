@@ -75,7 +75,7 @@ class Testimonial(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
     show_id = db.Column(db.Integer, db.ForeignKey('shows.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.String, db.ForeignKey('users.auth0_id'))
 
     # Relationships
     show = db.relationship('Show', back_populates='testimonials')

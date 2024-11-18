@@ -10,6 +10,7 @@ from flask import jsonify, make_response, request
 def index():
     return '<h1>Project Server</h1>'
 
+
 @app.route('/shows')
 def get_shows():
     shows = Show.query.all()
@@ -30,6 +31,7 @@ def get_shows():
 
     return make_response(jsonify(response), 200)
 
+
 @app.route('/shows/<int:id>')
 def get_show_by_id(id):
     show = Show.query.filter(Show.id==id).first()
@@ -45,6 +47,7 @@ def get_show_by_id(id):
         }
     
     return make_response(jsonify(response), 200)
+
 
 @app.route('/users')
 def get_users():
@@ -65,6 +68,7 @@ def get_users():
         response.append(user_data)
 
     return make_response(jsonify(response), 200)
+
 
 @app.route('/testimonials')
 def get_testimonials():
@@ -93,6 +97,7 @@ def get_testimonials():
 
     return make_response(jsonify(response), 200)
 
+
 @app.route('/clients')
 def get_clients():
     clients = Client.query.all()
@@ -107,6 +112,7 @@ def get_clients():
         response.append(client_data)
 
     return make_response(jsonify(response), 200)
+
 
 @app.route('/sponsors')
 def get_sponsors():
@@ -123,6 +129,7 @@ def get_sponsors():
         response.append(sponsor_data)
 
     return make_response(jsonify(response), 200)
+
 
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -151,6 +158,41 @@ def create_user():
     except Exception as e:
         db.session.rollback()
         return make_response(jsonify({'error': str(e)}), 500)
+    
+    
+@app.route('/testimonials', methods=['POST'])
+def create_testimonial():
+    data = request.get_json()
+
+    # Extract data from request
+    content = data.get('content')
+    show_id = data.get('show_id')
+    auth0_id = data.get('user_id')
+
+    # Validate the data
+    if not content or not show_id or not auth0_id:
+        return make_response(jsonify({'error': 'Missing data'}), 400)
+
+    # Validate that the show and user exist
+    show = Show.query.get(show_id)
+    user = User.query.filter_by(auth0_id=auth0_id).first()
+
+    if not show:
+        return make_response(jsonify({'error': 'Show not found'}), 404)
+    if not user:
+        return make_response(jsonify({'error': 'User not found'}), 404)
+
+    # Create a new Testimonial
+    new_testimonial = Testimonial(content=content, show_id=show_id, user_id=auth0_id)
+
+    try:
+        db.session.add(new_testimonial)
+        db.session.commit()
+        return make_response(jsonify({'message': 'Testimonial created successfully', 'testimonial_id': new_testimonial.id}), 201)
+    except Exception as e:
+        db.session.rollback()
+        return make_response(jsonify({'error': str(e)}), 500)
+
     
     
 @app.route('/users/<auth0_id>/testimonials', methods=['GET'])
