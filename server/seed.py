@@ -19,6 +19,13 @@ def create_shows():
 
     return shows
 
+def create_users():
+    users = [
+        User(auth0_id='auth0|67394bfa9af6f77f6657c90b', username='jazpersaldana', email='jazpersaldana@yahoo.com')
+    ]
+
+    return users
+
 def create_testimonials():
     testimonials = [
         Testimonial(content="The Gift of Time is a wonderful show. Simple enough conceptually and musically but very well executed and designed! I would recommend this to any HS, regardless of class. There's enough there to make it special!", show_id=1, user_id='auth0|67394bfa9af6f77f6657c90b')
@@ -72,6 +79,11 @@ if __name__ == '__main__':
         print('Seeding Shows...')
         shows = create_shows()
         db.session.add_all(shows)
+        db.session.commit()
+
+        print('Seeding Users...')
+        users = create_users()
+        db.session.add_all(users)
         db.session.commit()
 
         print('Seeding Testimonials...')
