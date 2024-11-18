@@ -58,7 +58,6 @@ def get_users():
         testimonials_list = [{'content': testimonial.content} for testimonial in user.testimonials]
 
         user_data = {
-            'id': user.id,
             'auth0_id': user.auth0_id,
             'username': user.username,
             'email': user.email,

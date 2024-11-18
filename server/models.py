@@ -43,8 +43,7 @@ class Show(db.Model, SerializerMixin):
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    auth0_id = db.Column(db.String, nullable=False)
+    auth0_id = db.Column(db.String, primary_key=True, nullable=False, unique=True)
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
 
@@ -91,7 +90,7 @@ class Testimonial(db.Model, SerializerMixin):
         return content
 
     def __repr__(self):
-        return f'<Client {self.id}: {self.name}>'   
+        return f'<Client {self.id}: {self.content}>'   
     
 class Client(db.Model, SerializerMixin):
     __tablename__ = 'clients'

@@ -1,8 +1,8 @@
-"""initial migration
+"""models complete
 
-Revision ID: e07016005407
+Revision ID: 68a6d3256be4
 Revises: 
-Create Date: 2024-11-17 12:06:27.350157
+Create Date: 2024-11-18 10:23:17.392955
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e07016005407'
+revision = '68a6d3256be4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,19 +41,19 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('auth0_id', sa.String(), nullable=False),
     sa.Column('username', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('auth0_id'),
+    sa.UniqueConstraint('auth0_id')
     )
     op.create_table('testimonials',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('content', sa.String(), nullable=False),
     sa.Column('show_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['show_id'], ['shows.id'], name=op.f('fk_testimonials_show_id_shows')),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_testimonials_user_id_users')),
+    sa.ForeignKeyConstraint(['user_id'], ['users.auth0_id'], name=op.f('fk_testimonials_user_id_users')),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
