@@ -1,357 +1,331 @@
-# Phase 4 Full-Stack Application Project Template
+# Percussion Playground - A Full-Stack Application
 
-## Learning Goals
+## Purpose
 
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
+- Create a full-stack application using React and Flask with both front and backend servers running through Render
+- Give users an opportunity to purchase/collaborate on custom designed shows for the competitve marching arts
+
+### Walkthrough
+
+[![Instinct Creative Arts](/ICA-LOGO.PNG)](https://youtu.be/4QydtNIWxtQ)
 
 ---
 
-## Introduction
+## Introduction/Setup
 
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin (NOTE: node_modules will be
-generated in a subsequent step):
+Navigate to the following web address to see the website in action:
+
+- [Instinct Creative Arts](https://ica-static-webpage.onrender.com)
+
+
+## Directory Structure
+
+Following the root directory structure below, there is a brief discussion on the function and purpose of each .js and .py file located in the `client` & `server` folders.
 
 ```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
 .
 ├── CONTRIBUTING.md
+├── ICA-LOGO.PNG
 ├── LICENSE.md
 ├── Pipfile
+├── Pipfile.lock
 ├── README.md
 ├── client
-│   ├── README.md
-│   ├── package.json
-│   ├── public
-│   └── src
+│   ├── README.md
+│   ├── build
+│   ├── node_modules
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   └── src
 └── server
+    ├── __pycache__
+    ├── app.db
     ├── app.py
     ├── config.py
+    ├── migrations
     ├── models.py
-    └── seed.py
+    ├── node_modules
+    ├── package-lock.json
+    ├── package.json
+    ├── requirements.txt
+    ├── seed.py
+    ├── sqlite_dump.sql
+    ├── static
+    └── test_api.py
 ```
 
-A `migrations` folder will be added to the `server` directory in a later step.
-
-The `client` folder contains a basic React application, while the `server`
-folder contains a basic Flask application. You will adapt both folders to
-implement the code for your project .
-
-NOTE: If you did not previously install `tree` in your environment setup, MacOS
-users can install this with the command `brew install tree`. WSL and Linux users
-can run `sudo apt-get install tree` to download it as well.
-
-## Where Do I Start?
-
-Just as with your Phase 3 Project, this will likely be one of the biggest
-projects you've undertaken so far. Your first task should be creating a Git
-repository to keep track of your work and roll back any undesired changes.
-
-### Removing Existing Git Configuration
-
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
-
-```console
-$ rm -rf .git .canvas
-```
-
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
-
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
-
-### Creating Your Own Git Repo
-
-First things first- rename this directory! Once you have an idea for a name,
-move one level up with `cd ..` and run
-`mv python-p4-project-template <new-directory-name>` to change its name (replace
-<new-directory-name> with an appropriate project directory name).
-
-> **Note: If you typed the `mv` command in a terminal within VS Code, you should
-> close VS Code then reopen it.**
-
-> **Note: `mv` actually stands for "move", but your computer interprets this
-> rename as a move from a directory with the old name to a directory with a new
-> name.**
-
-`cd` back into your new directory and run `git init` to create a local git
-repository. Add all of your local files to version control with `git add --all`,
-then commit them with `git commit -m'initial commit'`. (You can change the
-message here- this one is just a common choice.)
-
-Navigate to [GitHub](https://github.com). In the upper-right corner of the page,
-click on the "+" dropdown menu, then select "New repository". Enter the name of
-your local repo, choose whether you would like it to be public or private, make
-sure "Initialize this repository with a README" is unchecked (you already have
-one), then click "Create repository".
-
-Head back to the command line and enter
-`git remote add origin git@github.com:github-username/new-repository-name.git`.
-NOTE: Replace `github-username` with your github username, and
-`new-repository-name` with the name of your new repository. This command will
-map the remote repository to your local repository. Finally, push your first
-commit with `git push -u origin main`.
-
-Your project is now version-controlled locally and online. This will allow you
-to create different versions of your project and pick up your work on a
-different machine if the need arises.
+Note: My `instance` and `migrations` files were for initially configuring my locally run SQLite database. Because the database is now deployed through Render, they are not necessary for running the application.
 
 ---
 
-## Setup
+## Server Folder
 
-### `server/`
+### `app.py`
 
-The `server/` directory contains all of your backend code.
+Contains all of the RESTful routes connecting the Front-End React Application to the backend server on Render.
 
-`app.py` is your Flask application. You'll want to use Flask to build a simple
-API backend like we have in previous modules. You should use Flask-RESTful for
-your routes. You should be familiar with `models.py` and `seed.py` by now, but
-remember that you will need to use Flask-SQLAlchemy, Flask-Migrate, and
-SQLAlchemy-Serializer instead of SQLAlchemy and Alembic in your models.
+`app.route()`
 
-The project contains a default `Pipfile` with some basic dependencies. You may
-adapt the `Pipfile` if there are additional dependencies you want to add for
-your project.
-
-To download the dependencies for the backend server, run:
-
-```console
-pipenv install
-pipenv shell
-```
-
-You can run your Flask API on [`localhost:5555`](http://localhost:5555) by
-running:
-
-```console
-python server/app.py
-```
-
-Check that your server serves the default route `http://localhost:5555`. You
-should see a web page with the heading "Project Server".
-
-### `client/`
-
-The `client/` directory contains all of your frontend code. The file
-`package.json` has been configured with common React application dependencies,
-include `react-router-dom`. The file also sets the `proxy` field to forward
-requests to `"http://localhost:5555". Feel free to change this to another port-
-just remember to configure your Flask app to use another port as well!
-
-To download the dependencies for the frontend client, run:
-
-```console
-npm install --prefix client
-```
-
-You can run your React app on [`localhost:3000`](http://localhost:3000) by
-running:
-
-```sh
-npm start --prefix client
-```
-
-Check that your the React client displays a default page
-`http://localhost:3000`. You should see a web page with the heading "Project
-Client".
-
-## Generating Your Database
-
-NOTE: The initial project directory structure does not contain the `instance` or
-`migrations` folders. Change into the `server` directory:
-
-```console
-cd server
-```
-
-Then enter the commands to create the `instance` and `migrations` folders and
-the database `app.db` file:
-
-```
-flask db init
-flask db upgrade head
-```
-
-Type `tree -L 2` within the `server` folder to confirm the new directory
-structure:
-
-```console
-.
-├── app.py
-├── config.py
-├── instance
-│   └── app.db
-├── migrations
-│   ├── README
-│   ├── __pycache__
-│   ├── alembic.ini
-│   ├── env.py
-│   ├── script.py.mako
-│   └── versions
-├── models.py
-└── seed.py
-```
-
-Edit `models.py` and start creating your models. Import your models as needed in
-other modules, i.e. `from models import ...`.
-
-Remember to regularly run
-`flask db revision --autogenerate -m'<descriptive message>'`, replacing
-`<descriptive message>` with an appropriate message, and `flask db upgrade head`
-to track your modifications to the database and create checkpoints in case you
-ever need to roll those modifications back.
-
-> **Tip: It's always a good idea to start with an empty revision! This allows
-> you to roll all the way back while still holding onto your database. You can
-> create this empty revision with `flask db revision -m'Create DB'`.**
-
-If you want to seed your database, now would be a great time to write out your
-`seed.py` script and run it to generate some test data. Faker has been included
-in the Pipfile if you'd like to use that library.
-
----
-
-#### `config.py`
-
-When developing a large Python application, you might run into a common issue:
-_circular imports_. A circular import occurs when two modules import from one
-another, such as `app.py` and `models.py`. When you create a circular import and
-attempt to run your app, you'll see the following error:
-
-```console
-ImportError: cannot import name
-```
-
-If you're going to need an object in multiple modules like `app` or `db`,
-creating a _third_ module to instantiate these objects can save you a great deal
-of circular grief. Here's a good start to a Flask config file (you may need more
-if you intend to include features like authentication and passwords):
+The first is utilized for CREATE, READ, UPDATE, & DELETE Methods.
 
 ```py
-# Standard library imports
+@app.route('/')
+def home():
+    return '<h1>Project Server</h1>'
+```
 
-# Remote library imports
+### `config.py`
+
+#### Flask
+
+There are a number of Flask related packages implemented in the application including `flask_migrate`, `flask_sqlalchemy`, `flask_cors`, & `flask_restful`. Each of these serves a specific purpose in getting the backend Flask application to run smoothly.
+
+```py
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
+import os
+```
 
-# Local imports
+#### App
 
-# Instantiate app, set attributes
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
+The primary configuration for proper connection to the database comes from `app.config['SQLALCHEMY_DATABASE_URI']`. This connects the Flask application to the online server through the 'External Database URL'.
 
-# Define metadata, instantiate db
+#### SQLAlchemy & Migrate
+
+By passing `app` (through `Flask`) & `db` (through `SQLAlchemy`) through `Migrate`, we are able to properly instantiate the newly created database.
+
+```py
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
-
-# Instantiate REST API
-api = Api(app)
-
-# Instantiate CORS
-CORS(app)
-
 ```
-
-Now let's review that last line...
 
 #### CORS
 
-CORS (Cross-Origin Resource Sharing) is a system that uses HTTP headers to
-determine whether resources from different servers-of-origin can be accessed. If
-you're using the fetch API to connect your frontend to your Flask backend, you
-need to configure CORS on your Flask application instance. Lucky for us, that
-only takes one line:
+CORS (Cross-Origin Resource Sharing) is configured to connect my Front-End React Application to the backend server deployed through Render. It includes multiple sources for CORS access.
 
 ```py
-CORS(app)
-
+CORS(app, resources={r"/*": {"origins": 
+["http://localhost:3000", 
+"https://ica-static-webpage.onrender.com"]}})
 ```
 
-By default, Flask-CORS enables CORS on all routes in your application with all
-fetching servers. You can also specify the resources that allow CORS. The
-following specifies that routes beginning with `api/` allow CORS from any
-originating server:
+### `models.py`
+
+There are 5 tables/models represented:
+
+- Shows
+- Users
+- Testimonials
+- Clients
+- Sponsors
+
+#### Shows
 
 ```py
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+class Show(db.Model, SerializerMixin):
+    __tablename__ = 'shows'
 
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    image = db.Column(db.String)
+    description = db.Column(db.String)
+    instrumentation = db.Column(db.String)
+    price = db.Column(db.Integer)
+    audio = db.Column(db.String)
 ```
+This displays the attributes for each instance of `Shows`.
 
-You can also set this up resource-by-resource by importing and using the
-`@cross_origin` decorator:
+#### Users
 
 ```py
-@app.route("/")
-@cross_origin()
-def howdy():
-  return "Howdy partner!"
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
 
+    auth0_id = db.Column(db.String, primary_key=True, nullable=False, unique=True)
+    username = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+ ```
+
+This displays the attributes for each instance of `User`.
+
+#### Testimonials
+
+```py
+class Testimonial(db.Model, SerializerMixin):
+    __tablename__ = 'testimonials'
+
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String, nullable=False)
+    show_id = db.Column(db.Integer, db.ForeignKey('shows.id'))
+    user_id = db.Column(db.String, db.ForeignKey('users.auth0_id'))
 ```
+
+This displays the attributes for each instance of `Testimonial`. As you can see, there are two `ForeignKeys` that constitute the `primary_key` for each instance of `Show` and `User`.
+
+#### Clients
+
+```py
+class Client(db.Model, SerializerMixin):
+    __tablename__ = 'clients'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+ ```
+
+This displays the attributes for each instance of `Client`.
+
+#### Sponsors
+
+```py
+class Sponsor(db.Model, SerializerMixin):
+    __tablename__ = 'sponsors'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    image = db.Column(db.String)
+    link = db.Column(db.String)
+ ```
+
+This displays the attributes for each instance of `Sponsor`.
+
+### Relationships
+
+The table relationships are represented below:
+
+- Shows to Users = Many to Many Relationship through Testimonials
+- Shows to Testimonials = One to Many Relationship
+- Users to Shows = Many to Many Relationship through Testimonials
+- Users to Testimonials = One to Many Relationship
+
+![Table Relationship Diagram](/Phase-5-Project-Diagram.png)
+
+### `seed.py`
+
+This file contains all of the seed data for the `Shows`, `Users`, `Testimonials`, `Clients`, and `Sponsors` tables. 
+
+- All classes are generated through hardcoded instances of the respective class with the slight exception of `Users` and `Testimonials` having data POSTed through the React Application.
 
 ---
 
-## Updating Your README.md
+## Client Folder
 
-`README.md` is a Markdown file that describes your project. These files can be
-used in many different ways- you may have noticed that we use them to generate
-entire Canvas lessons- but they're most commonly used as homepages for online
-Git repositories. **When you develop something that you want other people to
-use, you need to have a README.**
+#### `index.js`
 
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this lesson's resources for a basic guide to Markdown.
+Contains the `Browser Router` and `Root` for my React application.
 
-### What Goes into a README?
+#### `index.css`
 
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit (you
-can ignore your migration files) should get at least a paragraph. Each function
-should get a small blurb.
+Contains ALL of the styling options for each component rendered in the browser application
 
-You should descibe your application first, and with a good level of detail. The
-rest should be ordered by importance to the user. (Probably routes next, then
-models.)
+### Components Folder
 
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
+This houses all of the components that comrpise the Front-End of the React application. Here is a visual representation of the directory:
 
----
+``` console
+components
+.
+├── About.js
+├── AddReview.js
+├── App.js
+├── AuthContext.js
+├── Clients.js
+├── Home.js
+├── Login.js
+├── Logout.js
+├── NavBar.js
+├── ShowDetails.js
+├── Shows.js
+├── Sponsors.js
+├── Testimonials.js
+├── UserContext.js
+└── UserProfile.js
+```
 
-## Conclusion
+#### `About.js`
 
-A lot of work goes into a full-stack application, but it all relies on concepts
-that you've practiced thoroughly throughout this phase. Hopefully this template
-and guide will get you off to a good start with your Phase 4 Project.
+Displays information on the creative team behind Instinct Creative Arts.
 
-Happy coding!
+#### `AddReview.js`
 
----
+Allows the user (when logged in) to add (POST) a testimonial to any show (based on its show_id) to the backend database.
+
+#### `App.js`
+
+Contains the major components that are housed within `NavBar.js` and connects them to their exact path (URL) through _React Router_.
+
+#### `AuthContext.js`
+
+Provides `useContext()` and `createContext()` hooks for user authentication across all routes in the React Application.
+
+#### `Clients.js`
+
+Displays all the clients that Instinct Creative Arts has collaborated with over the last decade.
+
+#### `Home.js`
+
+Displays Instinct Creative Arts Logo and serves as the Home Base for user navigation.
+
+#### `Login.js`
+
+Allows user to navigate to the third party authentication server (Auth0) for login purposes.
+
+#### `Logout.js`
+
+Allows user to navigate to the third party authentication server (Auth0) for logout purposes.
+
+#### `NavBar.js`
+
+Contains URL pathways for each clickable link in `NavBar.js`. Pathways include:
+
+- Home
+- About
+- Shows
+- Clients
+- Testimonials
+- Login
+- Logout
+- Profile
+
+#### `ShowDetails.js`
+
+Displays specific show information related to whichever show a user clicks on from the `Shows` catalog.
+
+#### `Shows.js`
+
+Displays the full catalog of purchasable shows. Allows user to click on any image for specific show information.
+
+#### `Sponsors.js`
+
+Displays sponsor/partner logos on each page/route. They are all clickable as well allowing you to navigate to their home page.
+
+#### `Testimonials.js`
+
+Displays all the testimonials from users regarding specific shows they are attached to.
+
+#### `UserContext.js`
+
+Allows the useContext() and createContext() hooks to apply to all children in the App.py component.
+
+#### `UserProfile.js`
+
+Allows a user (when logged in) to view their profile details including testimonials. It also allows full CRUD actions on testimonials for any show.
 
 ## Resources
 
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-- [Python Circular Imports - StackAbuse](https://stackabuse.com/python-circular-imports/)
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)
+- [Database Relationship Diagram](https://dbdiagram.io/home)
+- [Flask-SQLAlchemy](https://flask-sqlalchemy.readthedocs.io/en/3.1.x/)
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/)
+- [Python](https://www.python.org/)
+- [SQLite](https://www.sqlite.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Auth0](https://auth0.com/)
+- [Render](https://render.com/)
