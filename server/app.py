@@ -48,6 +48,7 @@ def get_show_by_id(id):
     
     return make_response(jsonify(response), 200)
 
+
 @app.route('/static/<path:filename>')
 def serve_static(filename):
     return send_from_directory(app.static_folder, filename)

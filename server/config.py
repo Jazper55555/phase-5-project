@@ -29,4 +29,4 @@ db.init_app(app)
 api = Api(app)
 
 # Instantiate CORS
-CORS(app, resources={r"/*": {"origins": "https://ica-webpage.onrender.com"}})
+CORS(app, resources={r"/*": {"origins": ["https://ica-webpage.onrender.com", "http://localhost:3000"]}})
