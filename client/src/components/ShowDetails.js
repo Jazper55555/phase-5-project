@@ -32,7 +32,7 @@ function ShowDetails() {
                         <h4 className="audio-header">Audio</h4>
                         {show.audio && (
                             <audio controls className="show-audio">
-                                <source src={`/static/${show.audio}`} type="audio/mpeg" />
+                                <source src={`https://iac-api-fv75.onrender.com/static/${show.audio}`} type="audio/mpeg" />
                                 Your browser does not support the audio element.
                             </audio>
                         )}

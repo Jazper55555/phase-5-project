@@ -12,7 +12,7 @@ from sqlalchemy import MetaData
 # Local imports
 
 # Instantiate app, set attributes
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://iac_database_user:XknhHOHWHJ2dI2lnmz4xSf0Aqei2Nh1G@dpg-cstlp7u8ii6s73fkb17g-a.oregon-postgres.render.com/iac_database'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -29,4 +29,4 @@ db.init_app(app)
 api = Api(app)
 
 # Instantiate CORS
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/*": {"origins": "https://ica-webpage.onrender.com"}})

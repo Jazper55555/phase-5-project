@@ -3,7 +3,7 @@
 from config import app, db
 from models import *
 
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response, request, send_from_directory
 
 # My Code
 @app.route('/')
@@ -47,6 +47,10 @@ def get_show_by_id(id):
         }
     
     return make_response(jsonify(response), 200)
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(app.static_folder, filename)
 
 
 @app.route('/users')
