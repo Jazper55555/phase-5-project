@@ -1,4 +1,4 @@
-# Percussion Playground - A Full-Stack Application
+# Instinct Creative Arts - A Full-Stack Application
 
 ## Purpose
 
